@@ -3,6 +3,9 @@ import React from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
 import { Building, FileText, MapPin } from "lucide-react";
 
 const ProjectForm = () => {
@@ -16,10 +19,76 @@ const ProjectForm = () => {
       <div className="max-w-4xl mx-auto space-y-8">
         <div className="text-center">
           <h1 className="text-3xl font-semibold text-gray-800">Project Registration Form</h1>
-          <p className="mt-2 text-gray-600">Iscon Balaji Foods Private Limited</p>
+          <p className="mt-2 text-gray-600">Create Intention to Invest</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Project Basic Details */}
+          <Card className="p-6">
+            <div className="flex items-center gap-2 mb-6">
+              <FileText className="h-5 w-5 text-blue-600" />
+              <h2 className="text-xl font-medium text-gray-800">Project Basic Details</h2>
+            </div>
+            <div className="grid grid-cols-1 gap-6">
+              <div className="space-y-2">
+                <Label htmlFor="projectTitle">Proposed Project Title <span className="text-red-500">*</span></Label>
+                <Input
+                  id="projectTitle"
+                  placeholder="Enter Project Title"
+                  defaultValue="Dehydrated Potato Flakes Manufacturing Unit"
+                  className="bg-white"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="projectDescription">Brief Project Overview <span className="text-red-500">*</span></Label>
+                <Textarea
+                  id="projectDescription"
+                  placeholder="Enter Project Description"
+                  defaultValue="Establishment of a manufacturing facility for Dehydrated Potato Flakes at Vikram Udyogpuri Township, Near Narwar, Ujjain, Madhya Pradesh."
+                  className="bg-white min-h-[100px]"
+                />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="businessType">Business Type <span className="text-red-500">*</span></Label>
+                  <Select>
+                    <SelectTrigger className="bg-white">
+                      <SelectValue placeholder="Select Business Type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="manufacturing">Manufacturing</SelectItem>
+                      <SelectItem value="services">Services</SelectItem>
+                      <SelectItem value="trading">Trading</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="industrySector">Industry Sector <span className="text-red-500">*</span></Label>
+                  <Select>
+                    <SelectTrigger className="bg-white">
+                      <SelectValue placeholder="Select Industry Sector" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="agro">Agro-Food Processing</SelectItem>
+                      <SelectItem value="manufacturing">Manufacturing</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="subSector">Sub Sector <span className="text-red-500">*</span></Label>
+                  <Select>
+                    <SelectTrigger className="bg-white">
+                      <SelectValue placeholder="Select Sub Sector" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="food">Food Processing</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+            </div>
+          </Card>
+
           {/* Company Information */}
           <Card className="p-6">
             <div className="flex items-center gap-2 mb-6">
@@ -28,16 +97,12 @@ const ProjectForm = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="companyName">Company Name</Label>
+                <Label htmlFor="companyName">Organization Name <span className="text-red-500">*</span></Label>
                 <Input
                   id="companyName"
                   defaultValue="Iscon Balaji Foods Private Limited"
                   className="bg-white"
                 />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="gstNo">GST No</Label>
-                <Input id="gstNo" placeholder="Enter GST number" className="bg-white" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="cinNo">CIN No</Label>
@@ -46,6 +111,10 @@ const ProjectForm = () => {
                   defaultValue="U15400GJ2012PTC068764"
                   className="bg-white"
                 />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="gstNo">GST No</Label>
+                <Input id="gstNo" placeholder="Enter GST number" className="bg-white" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="sector">Sector</Label>
@@ -58,62 +127,52 @@ const ProjectForm = () => {
             </div>
           </Card>
 
-          {/* Project Details */}
+          {/* Project Requirements */}
           <Card className="p-6">
             <div className="flex items-center gap-2 mb-6">
               <FileText className="h-5 w-5 text-blue-600" />
-              <h2 className="text-xl font-medium text-gray-800">Project Details</h2>
+              <h2 className="text-xl font-medium text-gray-800">Project Requirements</h2>
             </div>
-            <div className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="projectName">Project Name</Label>
+                <Label htmlFor="totalInvestment">Total Investment (₹)</Label>
                 <Input
-                  id="projectName"
-                  defaultValue="Dehydrated Potato Flakes Manufacturing Unit"
+                  id="totalInvestment"
+                  defaultValue="9,274.00 Lacs"
                   className="bg-white"
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="projectDescription">Project Description</Label>
+                <Label htmlFor="machineryCost">Plant & Machinery Cost (₹)</Label>
                 <Input
-                  id="projectDescription"
-                  defaultValue="Establishment of a manufacturing facility for Dehydrated Potato Flakes at Vikram Udyogpuri Township, Near Narwar, Ujjain, Madhya Pradesh."
+                  id="machineryCost"
+                  defaultValue="4,500.00 Lacs"
                   className="bg-white"
                 />
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label htmlFor="machineryCost">Plant & Machinery Cost</Label>
-                  <Input
-                    id="machineryCost"
-                    defaultValue="4,500.00 Lacs"
-                    className="bg-white"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="totalInvestment">Total Investment</Label>
-                  <Input
-                    id="totalInvestment"
-                    defaultValue="9,274.00 Lacs"
-                    className="bg-white"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="employment">Employment</Label>
-                  <Input
-                    id="employment"
-                    defaultValue="383 employees"
-                    className="bg-white"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="lineOfActivity">Line of Activity</Label>
-                  <Input
-                    id="lineOfActivity"
-                    defaultValue="Manufacturing of Dehydrated Potato Flakes"
-                    className="bg-white"
-                  />
-                </div>
+              <div className="space-y-2">
+                <Label htmlFor="powerRequired">Power Required (MW)</Label>
+                <Input
+                  id="powerRequired"
+                  placeholder="Enter power requirement"
+                  className="bg-white"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="waterRequired">Water Required (KL)</Label>
+                <Input
+                  id="waterRequired"
+                  placeholder="Enter water requirement"
+                  className="bg-white"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="employment">Employment Generation</Label>
+                <Input
+                  id="employment"
+                  defaultValue="383 employees"
+                  className="bg-white"
+                />
               </div>
             </div>
           </Card>
@@ -147,6 +206,11 @@ const ProjectForm = () => {
               </div>
             </div>
           </Card>
+
+          <div className="flex justify-end gap-4">
+            <Button type="button" variant="outline">Cancel</Button>
+            <Button type="submit">Submit</Button>
+          </div>
         </form>
       </div>
     </div>
